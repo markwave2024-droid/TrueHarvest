@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/legacy.dart';
+import 'package:task_new/utils/app_constants.dart';
 
 import '../models/product_model.dart';
 
@@ -36,9 +37,12 @@ class GroceryHomeController extends ChangeNotifier {
 
     // Apply category filter
     if (_selectedCategory != 'All') {
-      filtered = filtered
-          .where((p) => p.category == _selectedCategory)
-          .toList();
+      final categoryType = _categoryMap[_selectedCategory];
+      if (categoryType != null) {
+        filtered = filtered
+            .where((p) => p.category == categoryType)
+            .toList();
+      }
     }
 
     // Apply search filter
@@ -75,6 +79,17 @@ class GroceryHomeController extends ChangeNotifier {
     _searchValue = val;
     notifyListeners();
   }
+
+  // Map UI category names to CategoryType values
+  static Map<String, CategoryType> _categoryMap = {
+    'Milk': CategoryType.milk,
+    'Curd': CategoryType.curd,
+    'Honey': CategoryType.honey,
+    'Paneer': CategoryType.paneer,
+    'Sprouts': CategoryType.sprouts,
+    'Dry Fruits': CategoryType.dryFruits,
+    'Fruits': CategoryType.fruit,
+  };
 
   void selectCategory(String categoryName) {
     if (_selectedCategory != categoryName) {
@@ -113,7 +128,7 @@ class GroceryHomeController extends ChangeNotifier {
       // MILK
       Product(
         id: 'p1',
-        category: 'Milk',
+        category: CategoryType.milk,
         name: 'Organic Milk',
         imageUrl: 'assets/products/milk.jpeg',
         isFavorite: false,
@@ -134,7 +149,7 @@ class GroceryHomeController extends ChangeNotifier {
       // CURD
       Product(
         id: 'p2',
-        category: 'Curd',
+        category: CategoryType.curd,
         name: 'Homemade Fresh Curd',
         imageUrl: 'assets/products/curdPot.jpeg',
         isFavorite: false,
@@ -155,7 +170,7 @@ class GroceryHomeController extends ChangeNotifier {
       // HONEY
       Product(
         id: 'p3',
-        category: 'Honey',
+        category: CategoryType.honey,
         name: 'Organic Raw Honey',
         units: [
           ProductUnit(unitName: "500g", price: 225), // ₹225
@@ -176,7 +191,7 @@ class GroceryHomeController extends ChangeNotifier {
       // PANEER
       Product(
         id: 'p4',
-        category: 'Paneer',
+        category: CategoryType.paneer,
         name: 'Fresh Malai Paneer',
         units: [
           ProductUnit(unitName: "200g", price: 85), // ₹85
@@ -197,7 +212,7 @@ class GroceryHomeController extends ChangeNotifier {
       // SPROUTS
       Product(
         id: 'p5',
-        category: 'Sprouts',
+        category: CategoryType.sprouts,
         name: 'Fresh Mixed Sprouts',
         units: [
           ProductUnit(unitName: "1 box (250g)", price: 45), // ₹45
@@ -217,7 +232,7 @@ class GroceryHomeController extends ChangeNotifier {
       // FRUIT BOWL
       Product(
         id: 'p6',
-        category: 'Fruits',
+        category: CategoryType.fruit,
         name: 'Fresh Fruit Bowl',
         units: [
           ProductUnit(unitName: "1 Box (300g)", price: 80), // ₹80
@@ -237,7 +252,7 @@ class GroceryHomeController extends ChangeNotifier {
       // DRY FRUITS
       Product(
         id: 'p7',
-        category: 'Dry Fruits',
+        category: CategoryType.dryFruits,
         name: 'Premium Dry Fruits Mix',
         units: [
           ProductUnit(unitName: "250g", price: 299), // ₹299

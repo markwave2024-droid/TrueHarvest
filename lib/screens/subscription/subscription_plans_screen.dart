@@ -5,6 +5,7 @@ import 'package:task_new/models/product_model.dart';
 import 'package:task_new/models/subscription_model.dart';
 import 'package:task_new/routes/app_routes.dart';
 import 'package:task_new/utils/app_colors.dart';
+import 'package:task_new/utils/app_constants.dart';
 
 class SubscriptionPlansScreen extends ConsumerWidget {
   const SubscriptionPlansScreen({super.key});
@@ -559,7 +560,7 @@ class _SubscriptionDetailsSheetState
           name: 'Fresh Milk',
           description: 'Pure organic milk',
           imageUrl: 'assets/images/milk.png',
-          category: 'Milk',
+          category: CategoryType.milk,
           isFavorite: false,
           units: [ProductUnit(unitName: '500ml', price: 30.0)],
         ),

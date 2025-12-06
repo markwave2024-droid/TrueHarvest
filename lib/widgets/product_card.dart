@@ -78,7 +78,7 @@ class ProductCard extends ConsumerWidget {
               ),
               const SizedBox(height: 8.0),
               Text(
-                product.category,
+                product.category.name,
                 style: Theme.of(
                   context,
                 ).textTheme.bodySmall!.copyWith(color: Colors.grey),

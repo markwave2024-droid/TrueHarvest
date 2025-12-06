@@ -5,6 +5,7 @@ import 'package:task_new/models/product_model.dart';
 import 'package:task_new/models/subscription_model.dart';
 import 'package:task_new/routes/app_routes.dart';
 import 'package:task_new/utils/app_colors.dart';
+import 'package:task_new/utils/app_constants.dart';
 
 class CustomSubscriptionScreen extends ConsumerStatefulWidget {
   const CustomSubscriptionScreen({super.key});
@@ -23,7 +24,7 @@ class _CustomSubscriptionScreenState extends ConsumerState<CustomSubscriptionScr
       name: 'Fresh Milk',
       description: 'Pure organic milk',
       imageUrl: 'assets/images/milk.png',
-      category: 'Milk',
+      category: CategoryType.milk,
       isFavorite: false,
       features: [],
       units: [
@@ -36,7 +37,7 @@ class _CustomSubscriptionScreenState extends ConsumerState<CustomSubscriptionScr
       name: 'Fresh Curd',
       description: 'Homemade style curd',
       imageUrl: 'assets/images/curd.png',
-      category: 'Curd',
+      category: CategoryType.curd,
       isFavorite: false,
       features: [],
       units: [
@@ -49,7 +50,7 @@ class _CustomSubscriptionScreenState extends ConsumerState<CustomSubscriptionScr
       name: 'Fruit Bowl',
       description: 'Seasonal fresh fruits',
       imageUrl: 'assets/images/fruits.png',
-      category: 'Fruits',
+      category: CategoryType.fruit,
       isFavorite: false,
       features: [],
       units: [
@@ -62,7 +63,7 @@ class _CustomSubscriptionScreenState extends ConsumerState<CustomSubscriptionScr
       name: 'Dry Fruits Mix',
       description: 'Premium dry fruits',
       imageUrl: 'assets/images/dry_fruits.png',
-      category: 'Dry Fruits',
+      category: CategoryType.dryFruits,
       isFavorite: false,
       features: [],
       units: [
@@ -75,7 +76,7 @@ class _CustomSubscriptionScreenState extends ConsumerState<CustomSubscriptionScr
       name: 'Fresh Sprouts',
       description: 'Healthy mixed sprouts',
       imageUrl: 'assets/images/sprouts.png',
-      category: 'Sprouts',
+      category: CategoryType.sprouts,
       isFavorite: false,
       features: [],
       units: [

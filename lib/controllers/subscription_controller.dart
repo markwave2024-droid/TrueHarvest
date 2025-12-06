@@ -220,6 +220,7 @@ class SubscriptionController extends ChangeNotifier {
       case DeliveryFrequency.monthly:
         return DateTime.now().add(const Duration(days: 30));
     }
+    return null;
   }
 
   double _calculateTotalAmount(

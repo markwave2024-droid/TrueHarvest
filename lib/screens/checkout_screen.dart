@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:task_new/controllers/cart_controller.dart';
 import 'package:task_new/controllers/verification_controller.dart';
+import 'package:task_new/controllers/coupon_card_controller.dart';
+import 'package:task_new/screens/apply_coupon_card_screen.dart';
 import 'package:task_new/screens/payment_success_screen.dart';
 import 'package:task_new/services/razorpay_service.dart';
 import 'package:task_new/utils/app_colors.dart';
@@ -88,19 +90,22 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
   Widget build(BuildContext context) {
     final cartController = ref.watch(cartProvider);
     final verificationService = ref.watch(verificationServiceProvider);
+    final coupon = ref.watch(couponProvider);
     final subtotal = cartController.subtotal;
     final deliveryFee = _getDeliveryFee();
+    final totalBeforeDiscount = subtotal + deliveryFee;
 
-    // Calculate discount
-    final discountAmount =
+    // Calculate verification discount
+    final verificationDiscount =
         verificationService.isEligibleForDiscount(
           cartController.items,
-          subtotal + deliveryFee,
+          totalBeforeDiscount,
         )
-        ? verificationService.calculateDiscount(subtotal + deliveryFee)
+        ? verificationService.calculateDiscount(totalBeforeDiscount)
         : 0.0;
 
-    final total = subtotal + deliveryFee - discountAmount;
+    // Calculate final total with all discounts applied
+    final total = totalBeforeDiscount - verificationDiscount - coupon.discountAmount;
 
     return Scaffold(
       backgroundColor: AppColors.lightBackground,
@@ -124,11 +129,12 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  ApplyCouponCard(totalAmount: subtotal),
                   // Discount Offer Card
-                  DiscountOfferCard(
-                    subtotal: subtotal,
-                    deliveryFee: deliveryFee,
-                  ),
+                  // DiscountOfferCard(
+                  //   subtotal: subtotal,
+                  //   deliveryFee: deliveryFee,
+                  // ),
 
                   // Delivery Address Section
                   _buildSectionCard(
@@ -442,9 +448,7 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
     String value,
     String title,
     String subtitle,
-    IconData icon, {
-    bool isSelected = false,
-  }) {
+    IconData icon) {
     final isCurrentSelected = selectedPaymentMethod == value;
 
     return GestureDetector(
@@ -668,19 +672,24 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
   double _getTotalAmount() {
     final cartController = ref.read(cartProvider);
     final verificationService = ref.read(verificationServiceProvider);
+    final coupon = ref.read(couponProvider);
     final subtotal = cartController.subtotal;
     final deliveryFee = _getDeliveryFee();
+    final totalBeforeDiscount = subtotal + deliveryFee;
 
-    // Calculate discount
-    final discountAmount =
+    // Calculate verification discount
+    final verificationDiscount =
         verificationService.isEligibleForDiscount(
           cartController.items,
-          subtotal + deliveryFee,
+          totalBeforeDiscount,
         )
-        ? verificationService.calculateDiscount(subtotal + deliveryFee)
+        ? verificationService.calculateDiscount(totalBeforeDiscount)
         : 0.0;
 
-    return subtotal + deliveryFee - discountAmount;
+    // Calculate final total with all discounts applied
+    final double finalTotal = totalBeforeDiscount - verificationDiscount - coupon.discountAmount;
+    
+    return finalTotal > 0 ? finalTotal : 0.0; // Ensure total is never negative
   }
 
   Widget _buildVerificationBanner(verificationService, double discountAmount) {

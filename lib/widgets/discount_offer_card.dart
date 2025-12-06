@@ -323,16 +323,28 @@ class DiscountOfferCard extends ConsumerWidget {
     return milkQuantity >= AppConstants.minimumMilkQuantity;
   }
 
+  // bool _checkFruitRequirement(List items) {
+  //   for (var item in items) {
+  //     String productName = item.product.name.toLowerCase();
+  //     if (productName.contains('fruit') || 
+  //         item.product.category.toLowerCase().contains('fruit')) {
+  //       return true;
+  //     }
+  //   }
+  //   return false;
+  // }
   bool _checkFruitRequirement(List items) {
-    for (var item in items) {
-      String productName = item.product.name.toLowerCase();
-      if (productName.contains('fruit') || 
-          item.product.category.toLowerCase().contains('fruit')) {
-        return true;
-      }
+  for (var item in items) {
+    final category = item.product.category;
+
+    if (category == CategoryType.fruit ||
+        item.product.name.toLowerCase().contains('fruit')) {
+      return true;
     }
-    return false;
   }
+  return false;
+}
+
 
   String _getMilkStatus(List items) {
     double milkQuantity = 0;

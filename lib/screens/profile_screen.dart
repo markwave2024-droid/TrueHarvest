@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:task_new/controllers/whishlist_provider.dart';
 import 'package:task_new/utils/app_colors.dart';
 import 'package:task_new/routes/app_routes.dart';
 import 'package:task_new/controllers/verification_controller.dart';
@@ -15,6 +16,7 @@ class ProfileScreen extends ConsumerStatefulWidget {
 class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       backgroundColor: AppColors.lightBackground,
       appBar: AppBar(
@@ -287,13 +289,19 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         ),
         const SizedBox(width: 12),
         Expanded(
-          child: _buildStatCard(
-            icon: Icons.favorite_outlined,
-            title: 'Wishlist',
-            value: '8',
-            color: Colors.red,
+          child: Consumer(
+            builder: (context, ref, child) {
+              final wishlistcount=ref.watch(wishlistProvider).wishlistItems.length;
+            
+           return _buildStatCard(
+              icon: Icons.favorite_outlined,
+              title: 'Wishlist',
+              value: wishlistcount.toString(),
+              color: Colors.red,
+            );
+            }
           ),
-        ),
+        ), 
       ],
     );
   }
@@ -380,7 +388,6 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     required String title,
     required String subtitle,
     required VoidCallback onTap,
-    bool showDivider = true,
   }) {
     return InkWell(
       onTap: onTap,

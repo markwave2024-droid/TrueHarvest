@@ -1,15 +1,11 @@
 // lib/screens/cart_screen.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:provider/provider.dart';
 import 'package:task_new/controllers/cart_controller.dart';
-import 'package:task_new/controllers/verification_controller.dart';
-import 'package:task_new/models/product_model.dart';
 import 'package:task_new/utils/app_colors.dart';
 import 'package:task_new/utils/svg_utils.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:task_new/widgets/custom_alert_dialogue.dart';
-import 'package:task_new/widgets/discount_offer_card.dart';
 
 class CartScreen extends ConsumerStatefulWidget {
   const CartScreen({super.key});
@@ -95,10 +91,10 @@ class _CartScreenState extends ConsumerState<CartScreen> {
                       if (index == 0) {
                         return Padding(
                           padding: const EdgeInsets.only(bottom: 16),
-                          child: DiscountOfferCard(
-                            subtotal: cartViewController.subtotal,
-                            deliveryFee: 2.99, // Default delivery fee
-                          ),
+                          // child: DiscountOfferCard(
+                          //   subtotal: cartViewController.subtotal,
+                          //   deliveryFee: 2.99, // Default delivery fee
+                          // ),
                         );
                       }
                       
@@ -288,10 +284,10 @@ class _CartScreenState extends ConsumerState<CartScreen> {
                       const SizedBox(height: 8),
 
                       // Delivery Fee
-                      _buildPriceRow(
-                        'Delivery Fee',
-                        _calculateDeliveryFee(cartViewController.subtotal),
-                      ),
+                      // _buildPriceRow(
+                      //   'Delivery Fee',
+                      //   _calculateDeliveryFee(cartViewController.subtotal),
+                      // ),
 
                       // Divider
                       const Padding(
@@ -302,8 +298,9 @@ class _CartScreenState extends ConsumerState<CartScreen> {
                       // Total
                       _buildPriceRow(
                         'Total',
-                        cartViewController.subtotal +
-                            _calculateDeliveryFee(cartViewController.subtotal),
+                        cartViewController.subtotal,
+                        //+
+                           // _calculateDeliveryFee(cartViewController.subtotal),
                         isTotal: true,
                       ),
 

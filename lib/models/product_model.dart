@@ -1,6 +1,8 @@
+import 'package:task_new/utils/app_constants.dart';
+
 class Product {
   final String id;
-  final String category;
+  final CategoryType category;
   final String name;
   final String imageUrl;
   final bool isFavorite;

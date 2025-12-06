@@ -1,4 +1,3 @@
-import 'package:task_new/models/product_model.dart';
 
 // Enhanced subscription models based on the documentation
 
@@ -12,6 +11,7 @@ enum PlanType {
   annual,
   custom
 }
+
 
 enum DeliveryPattern {
   daily,
