@@ -45,5 +45,26 @@
     <true/>
     <key>UIApplicationSupportsIndirectInputEvents</key>
     <true/>
+    
+    <!-- Permission messages for iOS -->
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>We need access to your location to show nearby products and services.</string>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>We need access to your location to show nearby products and services even when the app is in the background.</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>We need access to your location to show nearby products and services even when the app is in the background.</string>
+    <key>NSLocationTemporaryUsageDescriptionDictionary</key>
+    <dict>
+      <key>LocationWhenInUse</key>
+      <string>We need access to your location to show nearby products and services.</string>
+    </dict>
+    
+    <!-- Notification permission -->
+    <key>NSCameraUsageDescription</key>
+    <string>We need access to your camera for taking profile pictures.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>We need access to your photo library for uploading images.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>We need access to your microphone for voice notes.</string>
   </dict>
 </plist>
