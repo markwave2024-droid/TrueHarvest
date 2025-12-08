@@ -7,7 +7,7 @@ import 'package:task_new/screens/apply_coupon_card_screen.dart';
 import 'package:task_new/screens/payment_success_screen.dart';
 import 'package:task_new/services/razorpay_service.dart';
 import 'package:task_new/utils/app_colors.dart';
-import 'package:task_new/screens/verification_dialog.dart';
+import 'package:task_new/widgets/verification_dialog.dart';
 import 'package:task_new/widgets/custom_alert_dialogue.dart';
 import 'package:task_new/widgets/discount_offer_card.dart';
 import 'package:task_new/widgets/cart_summary_card.dart';

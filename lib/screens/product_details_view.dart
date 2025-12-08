@@ -7,7 +7,7 @@ import 'package:task_new/controllers/whishlist_provider.dart';
 import 'package:task_new/models/cart_item.dart';
 import 'package:task_new/models/product_model.dart';
 import 'package:task_new/screens/cart_screen.dart';
-import 'package:task_new/screens/subscription_plan_screen.dart';
+import 'package:task_new/screens/subscriptions/subscription_plan_screen.dart';
 import 'package:task_new/utils/app_colors.dart';
 import 'package:task_new/utils/app_constants.dart';
 import 'package:task_new/widgets/quantity_handler.dart';
