@@ -4,7 +4,7 @@ import 'package:task_new/controllers/verification_controller.dart';
 import 'package:task_new/controllers/cart_controller.dart';
 import 'package:task_new/utils/app_colors.dart';
 import 'package:task_new/utils/app_constants.dart';
-import 'package:task_new/screens/verification_dialog.dart';
+import 'package:task_new/widgets/verification_dialog.dart';
 
 class DiscountOfferCard extends ConsumerWidget {
   final double subtotal;
